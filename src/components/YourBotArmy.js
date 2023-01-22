@@ -23,7 +23,10 @@ function YourBotArmy(props) {
       setMyBots([...myBots, botArmy]);
     }
   }, [botArmy]);
-
+  function removeBot(name){
+    const removedBot = myBots.filter((bot)=> bot.name !==name)
+    setMyBots(removedBot)
+}
   useEffect(() => {}, [myBots]);
   let armyRender;
   if (myBots === null) {
