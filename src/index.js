@@ -9,6 +9,8 @@ import { BotProvider } from './data/BotsContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    {/* wrapping the app in the provider allows all the components under it to use the context 
+    of the provider */}
    <BotProvider>
     <App />
     </BotProvider>
