@@ -38,6 +38,22 @@ function BotCollection() {
   },[botsContext])
   //gets data for which bot is clicked,making displaying only one bot by clicking on it
   //possible
+  const [botArmy,setBotArmy] = useContext(YourArmyContext)
+  function showSpecs(singleBot) {
+    // setBots to  div w/
+    // bot class
+    // bot name
+    // bot stats(li*3)
+    // catchphrase
+    // enlist button:
+                    //adds the bot to YourBotArmy:
+                    // onClick runs fn that changes state of army
+                    // [] => [singleBot] 
+    // go back button:
+                    //displays the whole collection of bots again
+    setBotArmy(singleBot)
+ //   setBots(<h3>{singleBot.name}</h3>);
+  }
 
   return <div>{bots}</div>;
   }
