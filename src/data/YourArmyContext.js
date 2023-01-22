@@ -4,7 +4,6 @@ const YourArmyContext = createContext()
 
 const YourArmyContextProvider  = (props) => {
     const [botArmy,setBotArmy] = useState(null)
-    console.log(botArmy)
     return(
        <YourArmyContext.Provider value={[botArmy,setBotArmy]}>
         {props.children}
