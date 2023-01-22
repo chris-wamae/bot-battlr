@@ -6,6 +6,7 @@ import BotCard from './components/BotCard';
 import YourBotArmy from './components/YourBotArmy';
 import BotCollection from './views/BotCollection';
 import { YourArmyContextProvider } from './data/YourArmyContext';
+import SortBar from './views/SortBar';
 
 
 function App() {

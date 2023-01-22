@@ -23,22 +23,77 @@ import BotCard from "../components/BotCard";
 import YourBotArmy from "../components/YourBotArmy";
 import { BotContext } from "../data/BotsContext";
 import { YourArmyContext } from "../data/YourArmyContext";
+import SortBar from "./SortBar";
+import BotFilter from "./BotFilter";
 function BotCollection() {
   //get data from BotContext store
   const botsContext = useContext(BotContext);
   //sets an initial state of an empty array
   const [bots, setBots] = useState([]);
-  useEffect(() =>{
-    //sets the state to use botsContext after its value has data from the fetch 
+
+  function sortBots(value) {
+    console.log(value);
+    if (value === "health") {
+      let sorted = botsContext.sort((a, b) => {
+        if (a.health < b.health) {
+          return 1;
+        } else if (a.health > b.health) {
+          return -1;
+        } else {
+          return 0;
+        }
+      });
+      setBots(
+        sorted.map((bot) => {
+          return <BotCard key={bot.id} bot={bot} showSpecs={showSpecs} />;
+        })
+      );
+    } else if (value === "armor") {
+      let sorted = botsContext.sort((a, b) => {
+        if (a.armor < b.armor) {
+          return 1;
+        } else if (a.armor > b.armor) {
+          return -1;
+        } else {
+          return 0;
+        }
+      });
+      setBots(
+        sorted.map((bot) => {
+          return <BotCard key={bot.id} bot={bot} showSpecs={showSpecs} />;
+        })
+      );
+    }
+    else if (value === "damage") {
+      let sorted = botsContext.sort((a, b) => {
+        if (a.damage < b.damage) {
+          return 1;
+        } else if (a.damage > b.damage) {
+          return -1;
+        } else {
+          return 0;
+        }
+      });
+      setBots(
+        sorted.map((bot) => {
+          return <BotCard key={bot.id} bot={bot} showSpecs={showSpecs} />;
+        })
+      );
+    }
+  }
+
+  useEffect(() => {
+    //sets the state to use botsContext after its value has data from the fetch
     //completing in BotsContext
-    setBots(botsContext.map((bot) => {
+    setBots(
+      botsContext.map((bot) => {
         return <BotCard key={bot.id} bot={bot} showSpecs={showSpecs} />;
       })
     );
-  },[botsContext])
+  }, [botsContext]);
   //gets data for which bot is clicked,making displaying only one bot by clicking on it
   //possible
-  const [botArmy,setBotArmy] = useContext(YourArmyContext)
+  const [botArmy, setBotArmy] = useContext(YourArmyContext);
   function showSpecs(singleBot) {
     // setBots to  div w/
     // bot class
@@ -46,18 +101,22 @@ function BotCollection() {
     // bot stats(li*3)
     // catchphrase
     // enlist button:
-                    //adds the bot to YourBotArmy:
-                    // onClick runs fn that changes state of army
-                    // [] => [singleBot] 
+    //adds the bot to YourBotArmy:
+    // onClick runs fn that changes state of army
+    // [] => [singleBot]
     // go back button:
-                    //displays the whole collection of bots again
-    setBotArmy(singleBot)
- //   setBots(<h3>{singleBot.name}</h3>);
+    //displays the whole collection of bots again
+    setBotArmy(singleBot);
+    //   setBots(<h3>{singleBot.name}</h3>);
   }
 
-  return <div>{bots}</div>;
-  }
- 
-
+  return (
+    <div>
+      <BotFilter/>
+      <SortBar sortBots={sortBots} />
+      {bots}
+    </div>
+  );
+}
 
 export default BotCollection;
