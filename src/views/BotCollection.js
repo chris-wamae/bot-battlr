@@ -19,11 +19,10 @@
 
 import React, { useEffect } from "react";
 import { useState, useContext } from "react";
-import { isButtonElement } from "react-router-dom/dist/dom";
 import BotCard from "../components/BotCard";
 import YourBotArmy from "../components/YourBotArmy";
 import { BotContext } from "../data/BotsContext";
-
+import { YourArmyContext } from "../data/YourArmyContext";
 function BotCollection() {
   //get data from BotContext store
   const botsContext = useContext(BotContext);
@@ -39,20 +38,10 @@ function BotCollection() {
   },[botsContext])
   //gets data for which bot is clicked,making displaying only one bot by clicking on it
   //possible
-  function showSpecs(singleBot) {
-    // setBots to  div w/
-    // bot class
-    // bot name
-    // bot stats(li*3)
-    // catchphrase
-    // enlist button:
-                    //adds the bot to YourBotArmy
-    // go back button:
-                    //displays the whole collection of bots again
-    setBots(<h3>{singleBot.name}</h3>);
-  }
 
   return <div>{bots}</div>;
-}
+  }
+ 
+
 
 export default BotCollection;

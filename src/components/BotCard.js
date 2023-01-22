@@ -20,6 +20,8 @@ function BotCard({ bot ,showSpecs}) {
             <li>Health:{bot.health}</li>
             <li>Damage:{bot.damage}</li>
           </ul>
+          {/*red button removes bot from the army,collection
+          and server*/}
         </div>
       ));
     }
