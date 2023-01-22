@@ -19,6 +19,7 @@ function BotCard({ bot ,showSpecs}) {
             <li>Armor:{bot.armor}</li>
             <li>Health:{bot.health}</li>
             <li>Damage:{bot.damage}</li>
+            <li>Class:{bot.bot_class}</li>
           </ul>
           {/*red button removes bot from the army,collection
           and server*/}

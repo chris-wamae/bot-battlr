@@ -30,6 +30,24 @@ function BotCollection() {
   const botsContext = useContext(BotContext);
   //sets an initial state of an empty array
   const [bots, setBots] = useState([]);
+  const [botsFilter, setBotsFilter] = useState([]);
+  const [classStore,setClassStore] = useState([])
+
+  function filterBots(value) {
+    setClassStore([...classStore, value])
+    console.log(classStore)
+    if(classStore.length !== 0){
+    setBotsFilter(
+      botsContext.filter((botClass) => classStore.includes(botClass.bot_class))
+    )};
+  }
+  useEffect(() => {
+    setBots(
+      botsFilter.map((bot) => {
+        return <BotCard key={bot.id} bot={bot} showSpecs={showSpecs} />;
+      })
+    );
+  }, [botsFilter]);
 
   function sortBots(value) {
     console.log(value);
@@ -63,8 +81,7 @@ function BotCollection() {
           return <BotCard key={bot.id} bot={bot} showSpecs={showSpecs} />;
         })
       );
-    }
-    else if (value === "damage") {
+    } else if (value === "damage") {
       let sorted = botsContext.sort((a, b) => {
         if (a.damage < b.damage) {
           return 1;
@@ -112,7 +129,7 @@ function BotCollection() {
 
   return (
     <div>
-      <BotFilter/>
+      <BotFilter filterBots={filterBots} />
       <SortBar sortBots={sortBots} />
       {bots}
     </div>
