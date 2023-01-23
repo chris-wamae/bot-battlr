@@ -25,29 +25,40 @@ import { BotContext } from "../data/BotsContext";
 import { YourArmyContext } from "../data/YourArmyContext";
 import SortBar from "./SortBar";
 import BotFilter from "./BotFilter";
-function BotCollection() {
+import axios from "axios";
+function BotCollection({}) {
   //get data from BotContext store
   const botsContext = useContext(BotContext);
   //sets an initial state of an empty array
   const [bots, setBots] = useState([]);
   const [botsFilter, setBotsFilter] = useState([]);
   const [classStore,setClassStore] = useState([])
+  const {botarmy,deletebots} = useContext(YourArmyContext)
+  const [botDelete,setBotDelete] = deletebots
+
+  function handleDelete(id){
+    axios.delete(`http://localhost:3000/bots/${id}`)
+    axios.get("http://localhost:3000/bots").then(d =>{setBots(d.data.map((bot) => {
+     return <BotCard key={bot.id} bot={bot} showSpecs={showSpecs} handleDelete={handleDelete}/>}))})
+     setBotDelete(botDelete + 1)
+     }
+
 
   function filterBots(value) {
+    console.log(value)
     setClassStore([...classStore, value])
     console.log(classStore)
-    if(classStore.length !== 0){
     setBotsFilter(
       botsContext.filter((botClass) => classStore.includes(botClass.bot_class))
-    )};
+    );
   }
   useEffect(() => {
     setBots(
       botsFilter.map((bot) => {
-        return <BotCard key={bot.id} bot={bot} showSpecs={showSpecs} />;
+        return <BotCard key={bot.id} bot={bot} showSpecs={showSpecs} handleDelete={handleDelete}/>;
       })
     );
-  }, [botsFilter]);
+  }, [classStore]);
 
   function sortBots(value) {
     console.log(value);
@@ -63,7 +74,7 @@ function BotCollection() {
       });
       setBots(
         sorted.map((bot) => {
-          return <BotCard key={bot.id} bot={bot} showSpecs={showSpecs} />;
+          return <BotCard key={bot.id} bot={bot} showSpecs={showSpecs} handleDelete={handleDelete}/>;
         })
       );
     } else if (value === "armor") {
@@ -78,7 +89,7 @@ function BotCollection() {
       });
       setBots(
         sorted.map((bot) => {
-          return <BotCard key={bot.id} bot={bot} showSpecs={showSpecs} />;
+          return <BotCard key={bot.id} bot={bot} showSpecs={showSpecs} handleDelete={handleDelete}/>;
         })
       );
     } else if (value === "damage") {
@@ -93,7 +104,7 @@ function BotCollection() {
       });
       setBots(
         sorted.map((bot) => {
-          return <BotCard key={bot.id} bot={bot} showSpecs={showSpecs} />;
+          return <BotCard key={bot.id} bot={bot} showSpecs={showSpecs} handleDelete={handleDelete} />;
         })
       );
     }
@@ -104,13 +115,14 @@ function BotCollection() {
     //completing in BotsContext
     setBots(
       botsContext.map((bot) => {
-        return <BotCard key={bot.id} bot={bot} showSpecs={showSpecs} />;
+        return <BotCard key={bot.id} bot={bot} showSpecs={showSpecs} handleDelete={handleDelete}/>;
       })
     );
   }, [botsContext]);
   //gets data for which bot is clicked,making displaying only one bot by clicking on it
   //possible
-  const [botArmy, setBotArmy] = useContext(YourArmyContext);
+ 
+  const [botArmy, setBotArmy] = botarmy
   function showSpecs(singleBot) {
     // setBots to  div w/
     // bot class

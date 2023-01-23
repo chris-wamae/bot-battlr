@@ -13,8 +13,12 @@ import BotCard from "./BotCard";
 // state with an array that provide that will be mapped
 // maps through a list and returns bot cards
 function YourBotArmy(props) {
-  const [botArmy, setBotArmy] = useContext(YourArmyContext);
-  const [myBots, setMyBots] = useState(botArmy);
+  const {botarmy} = useContext(YourArmyContext);
+  const {deletebots} = useContext(YourArmyContext)
+  const [botArmy,setBotArmy] = botarmy
+    const [botDelete,setBotDelete] = deletebots
+    const [myBots, setMyBots] = useState(botArmy);
+    const [currentState,setCurrentState] = useState(botDelete)
   console.log(botArmy)
   useEffect(() => {
     if (myBots === null) {
@@ -37,7 +41,6 @@ function YourBotArmy(props) {
       return (
     <div onClick={ () => removeBot(bot.name)}>
       <h3 key={bot.name}>{bot.name}</h3>
-            <button >X</button>
             </div>
       )
     });

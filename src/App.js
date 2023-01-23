@@ -10,7 +10,7 @@ import SortBar from './views/SortBar';
 
 
 function App() {
- 
+
   return (
     <div className="App">
       {/* pseudo code 

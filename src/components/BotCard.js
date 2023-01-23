@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function BotCard({ bot ,showSpecs}) {
+function BotCard({ bot ,showSpecs, handleDelete}) {
 
   function redner() {
     let test;
@@ -9,6 +9,9 @@ function BotCard({ bot ,showSpecs}) {
     } else {
         function getId(){
             showSpecs(bot)
+        }
+        function getDelete(){
+          handleDelete(bot.id)
         }
       return (test = (
         <div onClick={getId}>
@@ -21,6 +24,7 @@ function BotCard({ bot ,showSpecs}) {
             <li>Damage:{bot.damage}</li>
             <li>Class:{bot.bot_class}</li>
           </ul>
+          <button onClick={getDelete}>X</button>
           {/*red button removes bot from the army,collection
           and server*/}
         </div>
