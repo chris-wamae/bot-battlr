@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { BsShieldShaded } from "react-icons/bs";
+import { ImHeartBroken } from "react-icons/im";
+import { BsFillLightningFill } from "react-icons/bs";
 
 function BotCard({ bot ,showSpecs, handleDelete}) {
 
@@ -11,23 +14,26 @@ function BotCard({ bot ,showSpecs, handleDelete}) {
             showSpecs(bot)
         }
         function getDelete(){
-          handleDelete(bot.id)
+          handleDelete(bot)
         }
       return (test = (
-        <div onClick={getId}>
+        <span onClick={getId} className="botCard">
           <h3>{bot.name}</h3>
           <img src={bot.avatar_url} />
           <p>{bot.catchphrase}</p>
           <ul>
-            <li>Armor:{bot.armor}</li>
-            <li>Health:{bot.health}</li>
+            <li>
+              <BsShieldShaded/>Armor:{bot.armor}</li>
+            <li>
+              <ImHeartBroken/>Health:{bot.health}</li>
             <li>Damage:{bot.damage}</li>
-            <li>Class:{bot.bot_class}</li>
+            <li>
+              <BsFillLightningFill/>Class:{bot.bot_class}</li>
           </ul>
-          <button onClick={getDelete}>X</button>
+          <button id="delete-button"onClick={getDelete}>X</button>
           {/*red button removes bot from the army,collection
           and server*/}
-        </div>
+        </span>
       ));
     }
   }

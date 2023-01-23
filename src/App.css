@@ -1,5 +1,14 @@
+:root{
+  --black:#172121;
+  --red:#52050A;
+  --lightOrange:#FC9F5B;
+  --firebrick:#BB0A21;
+  --citron:#8EA604;
+}
+
 .App {
   text-align: center;
+  background-color:white;
 }
 
 .App-logo {
@@ -35,4 +44,86 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.botCard{
+  background-color:white;
+  border:5px solid black;
+  border-radius:20px;
+  width:250px;
+ display: flex;
+ flex-direction:column;
+ margin:10px;
+ font-size:16px;
+}
+.botCard h3{
+  font-size:25px;
+  font-weight:bold;
+}
+.botCard:hover{
+background-color:rgb(122, 180, 255);
+}
+
+.botCardsContainer{
+display:inline-block;
+background-color:var(--firebrick)
+
+ 
+}
+
+.armyCard{
+  background-color:white;
+  border:5px solid black;
+  border-radius:20px;
+  width:250px;
+ display: flex;
+ flex-direction:column;
+ margin:10px;
+ font-size:16px;
+}
+
+.botArmyContainer{
+  width:90%;
+  margin-left:auto;
+  margin-right:auto;
+ display:flex;
+flex-direction:row;
+flex-wrap: wrap;
+background-color:var(--citron);
+}
+
+#delete-button{
+  width:50px;
+  height:50px;
+  border:5px solid black;
+  color:black;
+  background-color:red;
+  font-weight: bolder;
+  margin-left:40%;
+}
+
+#delete-button:hover{
+  border:5px solid white;
+  color:red;
+  background-color:black;
+  
+}
+
+h2{
+  font-size:40px;
+}
+
+hr{
+  color:blue;
+  background-color:var(--firebrick);
+  margin-bottom:20px;
+  margin-top:20px;
+  height:10px;
+}
+
+.filterForm{
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  background-color:rgb(251, 133, 103);
 }

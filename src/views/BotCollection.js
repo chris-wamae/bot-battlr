@@ -32,22 +32,41 @@ function BotCollection({}) {
   //sets an initial state of an empty array
   const [bots, setBots] = useState([]);
   const [botsFilter, setBotsFilter] = useState([]);
-  const [classStore,setClassStore] = useState([])
-  const {botarmy,deletebots} = useContext(YourArmyContext)
-  const [botDelete,setBotDelete] = deletebots
+  const [classStore, setClassStore] = useState([]);
+  const { botarmy, deletebots } = useContext(YourArmyContext);
+  const [botDelete, setBotDelete] = deletebots;
 
-  function handleDelete(id){
-    axios.delete(`http://localhost:3000/bots/${id}`)
-    axios.get("http://localhost:3000/bots").then(d =>{setBots(d.data.map((bot) => {
-     return <BotCard key={bot.id} bot={bot} showSpecs={showSpecs} handleDelete={handleDelete}/>}))})
-     setBotDelete(botDelete + 1)
-     }
+  function handleDelete(bot) {
 
+    axios.delete(`http://localhost:3000/bots/${bot.id}`);
+    axios.get("http://localhost:3000/bots").then((d) => {
+      setBots(
+        d.data?.map((bot) => {
+          return (
+            <div className="botCardsContainer">
+            <BotCard
+              key={bot.id}
+              bot={bot}
+              showSpecs={showSpecs}
+              handleDelete={handleDelete}
+            />
+            </div>
+          );
+        })
+      );
+    });
+      if(botDelete.length === 0){
+        console.log("run I have")
+        setBotDelete(bot.id);
+      }
+      else{
+        console.log("I have run")
+        setBotDelete([...botDelete, bot.id])
+      }    
+  }
 
   function filterBots(value) {
-    console.log(value)
-    setClassStore([...classStore, value])
-    console.log(classStore)
+    setClassStore([...classStore, value]);
     setBotsFilter(
       botsContext.filter((botClass) => classStore.includes(botClass.bot_class))
     );
@@ -55,7 +74,16 @@ function BotCollection({}) {
   useEffect(() => {
     setBots(
       botsFilter.map((bot) => {
-        return <BotCard key={bot.id} bot={bot} showSpecs={showSpecs} handleDelete={handleDelete}/>;
+        return (
+          <div className="botCardsContainer">
+          <BotCard
+            key={bot.id}
+            bot={bot}
+            showSpecs={showSpecs}
+            handleDelete={handleDelete}
+          />
+          </div>
+        );
       })
     );
   }, [classStore]);
@@ -74,7 +102,16 @@ function BotCollection({}) {
       });
       setBots(
         sorted.map((bot) => {
-          return <BotCard key={bot.id} bot={bot} showSpecs={showSpecs} handleDelete={handleDelete}/>;
+          return (
+            <div className="botCardsContainer">
+            <BotCard
+              key={bot.id}
+              bot={bot}
+              showSpecs={showSpecs}
+              handleDelete={handleDelete}
+            />
+            </div>
+          );
         })
       );
     } else if (value === "armor") {
@@ -89,7 +126,16 @@ function BotCollection({}) {
       });
       setBots(
         sorted.map((bot) => {
-          return <BotCard key={bot.id} bot={bot} showSpecs={showSpecs} handleDelete={handleDelete}/>;
+          return (
+            <div className="botCardsContainer">
+            <BotCard
+              key={bot.id}
+              bot={bot}
+              showSpecs={showSpecs}
+              handleDelete={handleDelete}
+            />
+            </div>
+          );
         })
       );
     } else if (value === "damage") {
@@ -104,7 +150,16 @@ function BotCollection({}) {
       });
       setBots(
         sorted.map((bot) => {
-          return <BotCard key={bot.id} bot={bot} showSpecs={showSpecs} handleDelete={handleDelete} />;
+          return (
+            <div className="botCardsContainer">
+            <BotCard
+              key={bot.id}
+              bot={bot}
+              showSpecs={showSpecs}
+              handleDelete={handleDelete}
+            />
+            </div>
+          );
         })
       );
     }
@@ -115,34 +170,36 @@ function BotCollection({}) {
     //completing in BotsContext
     setBots(
       botsContext.map((bot) => {
-        return <BotCard key={bot.id} bot={bot} showSpecs={showSpecs} handleDelete={handleDelete}/>;
+        return (
+          <div className="botCardsContainer">
+          <BotCard
+            key={bot.id}
+            bot={bot}
+            showSpecs={showSpecs}
+            handleDelete={handleDelete}
+          />
+          </div>
+        );
       })
     );
   }, [botsContext]);
   //gets data for which bot is clicked,making displaying only one bot by clicking on it
   //possible
- 
-  const [botArmy, setBotArmy] = botarmy
+
+  const [botArmy, setBotArmy] = botarmy;
   function showSpecs(singleBot) {
-    // setBots to  div w/
-    // bot class
-    // bot name
-    // bot stats(li*3)
-    // catchphrase
-    // enlist button:
-    //adds the bot to YourBotArmy:
-    // onClick runs fn that changes state of army
-    // [] => [singleBot]
-    // go back button:
-    //displays the whole collection of bots again
     setBotArmy(singleBot);
     //   setBots(<h3>{singleBot.name}</h3>);
   }
 
+  function removeBotDOM(){
+  }
+  removeBotDOM()
   return (
     <div>
-      <BotFilter filterBots={filterBots} />
       <SortBar sortBots={sortBots} />
+      <BotFilter filterBots={filterBots} />
+      
       {bots}
     </div>
   );

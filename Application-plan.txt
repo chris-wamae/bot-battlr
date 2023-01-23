@@ -3,3 +3,6 @@
 3. Deploy app using vercel
 4. Use Zustand for state management
 5. Use ReactRouterDom for routing
+
+All bots have an onClick on them
+
