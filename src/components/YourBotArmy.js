@@ -59,7 +59,7 @@ function YourBotArmy(props) {
     const unique = [...new Map(deletedBots?.map((m) => [m.id, m])).values()];
     armyRender = unique.map((bot) => {
       return (
-        <div onClick={() => removeBot(bot.name) }className="armyCard">
+        <div onClick={() => removeBot(bot.name) }className="armyCard" key={bot.id}>
           <h3>{bot.name}</h3>
           <img src={bot.avatar_url} />
           <p>{bot.catchphrase}</p>

@@ -57,7 +57,7 @@ function BotCollection({}) {
     });
       if(botDelete.length === 0){
         console.log("run I have")
-        setBotDelete(bot.id);
+        setBotDelete([bot.id]);
       }
       else{
         console.log("I have run")
@@ -75,9 +75,9 @@ function BotCollection({}) {
     setBots(
       botsFilter.map((bot) => {
         return (
-          <div className="botCardsContainer">
+          <div className="botCardsContainer" >
           <BotCard
-            key={bot.id}
+            key={bot.catchphrase}
             bot={bot}
             showSpecs={showSpecs}
             handleDelete={handleDelete}
@@ -105,7 +105,7 @@ function BotCollection({}) {
           return (
             <div className="botCardsContainer">
             <BotCard
-              key={bot.id}
+              key={bot.catchphrase}
               bot={bot}
               showSpecs={showSpecs}
               handleDelete={handleDelete}
@@ -129,7 +129,7 @@ function BotCollection({}) {
           return (
             <div className="botCardsContainer">
             <BotCard
-              key={bot.id}
+              key={bot.catchphrase}
               bot={bot}
               showSpecs={showSpecs}
               handleDelete={handleDelete}
@@ -153,7 +153,7 @@ function BotCollection({}) {
           return (
             <div className="botCardsContainer">
             <BotCard
-              key={bot.id}
+              key={bot.catchphrase}
               bot={bot}
               showSpecs={showSpecs}
               handleDelete={handleDelete}
@@ -173,7 +173,7 @@ function BotCollection({}) {
         return (
           <div className="botCardsContainer">
           <BotCard
-            key={bot.id}
+            key={bot.catchphrase}
             bot={bot}
             showSpecs={showSpecs}
             handleDelete={handleDelete}
