@@ -1,70 +1,37 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# bot-battlr
+- This app fetchs data from a db.json server "". It uses React framework.
+ - It has the following tables:
+  - The App table is the main component that is used to house all the components of the page .
+  - The BotCollection component that Allows filtering of bots by their classes and also     allows bots to be sorted according to their health,armor or damage.
+  - YourBotArmy component that filters out repeated bots allowing a user to only add a specific bot to their army once and returns a bot that has been selected by the user.
+  - BotCard component that creates a single bot and  Bot collection uses this component to render all the bots into the page.
+  - The BotsContext component provides data of all the bots currently in the server to the page and Initializes context, when imported it will allow us to use the store of data that will be defined. 
+  - The sortBar component Provides a form that allows a user to sort the bots on the page by their health,damage or armor.
+  - The BotFilter component that fiters bots according to Medic, assauly, Defender, captain and witch.
+- REQUIREMENTS FOR USE
+- Prerequisites
+- For you to use the content on this repo ensure you have the following:
+    - node v14.17.4 and above
+    - A computer that runs on either of the following; (Linux, Mac OS and Windows)
+    - nodejs 9.0+
+    - npm 6.14.14 and above
+    - Vue 2.6.11- Status:
+    - Version: - v0.1.0
+    - Setup instructions
+    - To use this repository on your machine requires some simple steps:
+- Open a terminal / command line interface on your computer
+- Clone the repo by using the following to create a copy on your local machine: "https://github.com/chris-wamae/bot-battlr"
+- Change directory to the repo folder:
+- cd bot-battlr
+  - Open it in Visual Studio Code
+  - code .
+- run this command To get backend started:
+  - json-server--watch db.json- test server by copy-pasting this URL in postman or browser - "http://localhost:3000/bots"
+- Status: maintained, and is currently in development
+- Version: v0.1.0
+- Node Version: 14.17.4 and above
+- Author:
+- Chris Wamae
+   - Initial work - [Chris Wamae] "https://github.com/chris-wamae"
+- License
+   - This project is licensed under the MIT License
