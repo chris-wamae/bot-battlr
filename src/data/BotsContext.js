@@ -1,3 +1,4 @@
+//Provides data of all the bots currently in the server to the page
 import { createContext, useState, useEffect } from "react";
 import axios from "axios";
 //Initializes context, when imported it will allow us to use the store of data that will be defined

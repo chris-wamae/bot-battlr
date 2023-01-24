@@ -1,21 +1,3 @@
-//BotSpecs should be rendered inside this component
-//when a bot card is clicked, its id is passed to the bot specs component
-//the bot specs component uses that id to filter that bot from the list
-//it renders that bot with additional information
-
-//Bot filter should be rendered inside this component
-
-//Sort Bar renders inside this component
-//this is a select menu with three options
-//by health, by armor, by damage
-//if a sort option is selected, it sorts the bots i
-
-//All the Bot cards will be rendered here through map
-//if no classes are selected
-
-//if some classes are selected
-//run a filter method before rendering
-//checkbox menu
 
 import React, { useEffect } from "react";
 import { useState, useContext } from "react";
@@ -26,7 +8,8 @@ import { YourArmyContext } from "../data/YourArmyContext";
 import SortBar from "./SortBar";
 import BotFilter from "./BotFilter";
 import axios from "axios";
-function BotCollection({}) {
+//This component is the container for all the bots on the page 
+function BotCollection() {
   //get data from BotContext store
   const botsContext = useContext(BotContext);
   //sets an initial state of an empty array
@@ -35,15 +18,14 @@ function BotCollection({}) {
   const [classStore, setClassStore] = useState([]);
   const { botarmy, deletebots } = useContext(YourArmyContext);
   const [botDelete, setBotDelete] = deletebots;
-
+//allows  a user to delete a bot persistently
   function handleDelete(bot) {
-
     axios.delete(`http://localhost:3000/bots/${bot.id}`);
     axios.get("http://localhost:3000/bots").then((d) => {
       setBots(
         d.data?.map((bot) => {
           return (
-            <div className="botCardsContainer">
+            <div className="botCardsContainer" key={bot.id}>
             <BotCard
               key={bot.id}
               bot={bot}
@@ -55,16 +37,9 @@ function BotCollection({}) {
         })
       );
     });
-      if(botDelete.length === 0){
-        console.log("run I have")
-        setBotDelete([bot.id]);
-      }
-      else{
-        console.log("I have run")
-        setBotDelete([...botDelete, bot.id])
-      }    
+        setBotDelete([...botDelete, bot.id]);
   }
-
+//Allows filtering of bots by their classes
   function filterBots(value) {
     setClassStore([...classStore, value]);
     setBotsFilter(
@@ -75,7 +50,7 @@ function BotCollection({}) {
     setBots(
       botsFilter.map((bot) => {
         return (
-          <div className="botCardsContainer" >
+          <div className="botCardsContainer" key={bot.id} >
           <BotCard
             key={bot.catchphrase}
             bot={bot}
@@ -87,9 +62,8 @@ function BotCollection({}) {
       })
     );
   }, [classStore]);
-
+//Allows bots to be sorted according to their health,armor or damage
   function sortBots(value) {
-    console.log(value);
     if (value === "health") {
       let sorted = botsContext.sort((a, b) => {
         if (a.health < b.health) {
@@ -103,7 +77,7 @@ function BotCollection({}) {
       setBots(
         sorted.map((bot) => {
           return (
-            <div className="botCardsContainer">
+            <div className="botCardsContainer" key={bot.id}>
             <BotCard
               key={bot.catchphrase}
               bot={bot}
@@ -127,7 +101,7 @@ function BotCollection({}) {
       setBots(
         sorted.map((bot) => {
           return (
-            <div className="botCardsContainer">
+            <div className="botCardsContainer" key={bot.id}>
             <BotCard
               key={bot.catchphrase}
               bot={bot}
@@ -151,7 +125,7 @@ function BotCollection({}) {
       setBots(
         sorted.map((bot) => {
           return (
-            <div className="botCardsContainer">
+            <div className="botCardsContainer" key={bot.id}>
             <BotCard
               key={bot.catchphrase}
               bot={bot}
@@ -164,14 +138,14 @@ function BotCollection({}) {
       );
     }
   }
-
+//renders all the bots in a random order the first time the page loads
   useEffect(() => {
     //sets the state to use botsContext after its value has data from the fetch
     //completing in BotsContext
     setBots(
       botsContext.map((bot) => {
         return (
-          <div className="botCardsContainer">
+          <div className="botCardsContainer" key={bot.id}>
           <BotCard
             key={bot.catchphrase}
             bot={bot}

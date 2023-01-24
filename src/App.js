@@ -10,17 +10,16 @@ import SortBar from "./views/SortBar";
 
 function App() {
   return (
+    //this is the main div that holds all the components of the page 
     <div className="App">
       {/* pseudo code 
       -the YourBotArmy component should be rendered here
       */}
-      <YourArmyContextProvider>
       <h2>Your bot army</h2>
       <p>Click on a bot to add it to your army:</p>
-      <YourBotArmy />
+      <YourBotArmy/>
       <hr></hr>
-        <BotCollection />
-      </YourArmyContextProvider>
+      <BotCollection/>
     </div>
   );
 }

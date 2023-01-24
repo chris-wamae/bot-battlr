@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import { useEffect } from "react";
-
+//This provides YourBotArmy component with data of the bots it needs to render to the page
 const YourArmyContext = createContext();
 
 const YourArmyContextProvider = (props) => {

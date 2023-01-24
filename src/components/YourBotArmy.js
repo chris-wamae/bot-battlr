@@ -7,14 +7,7 @@ import BotCard from "./BotCard";
 import { BsShieldShaded } from "react-icons/bs";
 import { ImHeartBroken } from "react-icons/im";
 import { BsFillLightningFill } from "react-icons/bs";
-//initial state of empty array
-// is this function called in bot collection??
-//function that sets state
-//if the array is empty...replace it
-//if it isnt...spread and add the element
-//where is the array from???
-// state with an array that provide that will be mapped
-// maps through a list and returns bot cards
+//This component contains bots that a user has chose to add to their army
 function YourBotArmy(props) {
   const { botarmy } = useContext(YourArmyContext);
   const { deletebots } = useContext(YourArmyContext);
@@ -23,13 +16,9 @@ function YourBotArmy(props) {
   const [myBots, setMyBots] = useState(botArmy);
   const [deletedBots,setDeletedBots] =useState(botDelete)
   useEffect(()=>{
-    setDeletedBots([...deletedBots, botDelete])
-    console.log("These are the deleted bots")
-    console.log(deletebots)
+    console.log(botDelete)
+    console.log(deletedBots)
   },[botDelete])
-  useEffect(() => {
- 
-  }, [botDelete]);
   useEffect(() => {
     if (myBots === null) {
       setMyBots([]);
@@ -37,28 +26,26 @@ function YourBotArmy(props) {
       setMyBots([...myBots, botArmy]);
     }
   }, [botArmy]);
+
+//allows  a user to remove a bot from their army by clicking on it 
   function removeBot(name) {
     const removedBot = myBots.filter((bot) => bot.name !== name);
     setMyBots(removedBot);
-
   }
   useEffect(() => {}, [myBots]);
   let armyRender;
   if (myBots === null) {
     armyRender = <h3>Add Bots Please</h3>;
   } else {
-    // let minusDeleted = myBots.filter((element)=>{
-    //   return botDelete.id !== element.id
-    // })
-    // let minusDeleted = botDelete.filter(function(bot) {
-    //   return !myBots.includes(bot.id); 
-    // })
+
     let deletedBots = myBots.filter((bot)=>{
      return bot.id !== botDelete
     })  
+    //filters out repeated bots allowing a user to only add a specific bot to their army once
     const unique = [...new Map(deletedBots?.map((m) => [m.id, m])).values()];
     armyRender = unique.map((bot) => {
       return (
+        // returns a bot that has been selected by the user
         <div onClick={() => removeBot(bot.name) }className="armyCard" key={bot.id}>
           <h3>{bot.name}</h3>
           <img src={bot.avatar_url} />

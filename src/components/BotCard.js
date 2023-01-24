@@ -3,20 +3,23 @@ import { BsShieldShaded } from "react-icons/bs";
 import { ImHeartBroken } from "react-icons/im";
 import { BsFillLightningFill } from "react-icons/bs";
 
+//creates a single bot
+//Bot collection uses this component to render all the bots into the page
 function BotCard({ bot ,showSpecs, handleDelete}) {
-
-  function redner() {
-    let test;
+//renders a single bot card
+  function renderCard() {
+    let singleBotCard;
     if (bot === undefined) {
       console.log("loading...");
     } else {
         function getId(){
             showSpecs(bot)
         }
+        //passes the id of the bot a user has chosen to delete to bot collection
         function getDelete(){
           handleDelete(bot)
         }
-      return (test = (
+      return (singleBotCard = (
         <span onClick={getId} className="botCard">
           <h3>{bot.name}</h3>
           <img src={bot.avatar_url} />
@@ -37,7 +40,7 @@ function BotCard({ bot ,showSpecs, handleDelete}) {
       ));
     }
   }
-  return <>{redner()}</>;
+  return <>{renderCard()}</>;
 }
 
 export default BotCard;
