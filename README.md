@@ -1,4 +1,5 @@
 # bot-battlr
+- Visit https://bot-battlr-chris-wamae.vercel.app to access the deployed site
 - This app fetchs data from a db.json server "". It uses React framework.
  - It has the following tables:
   - The App table is the main component that is used to house all the components of the page .
