@@ -1,18 +1,6 @@
 {
   "bots": [
     {
-      "id": 123,
-      "name": "^z-24",
-      "health": 41,
-      "damage": 21,
-      "armor": 99,
-      "bot_class": "Defender",
-      "catchphrase": "0001001101001110100110000010000",
-      "avatar_url": "https://robohash.org/verotemporecorrupti.png?size=300x300&set=set1",
-      "created_at": "2018-10-02T19:55:11.242Z",
-      "updated_at": "2018-10-02T19:55:11.242Z"
-    },
-    {
       "id": 124,
       "name": "b-75",
       "health": 84,

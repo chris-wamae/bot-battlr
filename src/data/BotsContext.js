@@ -9,7 +9,7 @@ const BotContext = createContext();
 const BotProvider = (props) => {
   const [bots, setBots] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:3000/bots").then((d) => {
+    axios.get("https://json-server-vercel-pj78p6g0t-chris-wamae.vercel.app/bots").then((d) => {
       setBots(d.data);
     });
   }, []);

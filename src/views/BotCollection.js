@@ -20,8 +20,8 @@ function BotCollection() {
   const [botDelete, setBotDelete] = deletebots;
 //allows  a user to delete a bot persistently
   function handleDelete(bot) {
-    axios.delete(`http://localhost:3000/bots/${bot.id}`);
-    axios.get("http://localhost:3000/bots").then((d) => {
+    axios.delete(`https://json-server-vercel-pj78p6g0t-chris-wamae.vercel.app/bots/${bot.id}`);
+    axios.get("https://json-server-vercel-pj78p6g0t-chris-wamae.vercel.app/bots").then((d) => {
       setBots(
         d.data?.map((bot) => {
           return (
