@@ -1,3 +1,4 @@
+//Filters bots according to their classes
 import React from "react";
 import { useState } from "react";
 function BotFilter({ filterBots }) {
@@ -6,8 +7,10 @@ function BotFilter({ filterBots }) {
   }
 
   return (
+    //returns a form that allows the user to select filters
     <section>
       <h3>Filter Bots by Classes</h3>
+      {/* the form uses checkboxes to allow the user to select multiple classes at the same time */}
       <form className="filterForm">
         <div>
           <label htmlFor="support">Support</label>

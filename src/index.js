@@ -1,24 +1,14 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { BotProvider } from "./data/BotsContext";
-import { YourArmyContextProvider } from "./data/YourArmyContext";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* wrapping the app in the provider allows all the components under it to use the context 
-    of the provider */}
-    {/* //allows the context files to be accessed throught the application  */}
-    <YourArmyContextProvider>
-    <BotProvider>
-      <App />
-    </BotProvider>
-    </YourArmyContextProvider>
+    <App />
   </React.StrictMode>
-
 );
 
 // If you want to start measuring performance in your app, pass a function
